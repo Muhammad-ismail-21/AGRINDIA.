@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agriculture in Karnataka</title>
+
+    <style>
+
+        body {
+            font-family: 'Georgia', serif;
+            font-size: 20px;
+            background-color: #f9f9f9;
+            margin: 0;
+        }
+
+
+        .navbar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(196, 211, 199, 0.9);
+            /* Semi-transparent background */
+            padding: 10px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+
+            border-bottom: 2px solid rgba(196, 211, 199, 0.9);
+            box-shadow: 5px 1px 25px rgb(42, 168, 57);
+            z-index: 1000;
+        }
+
+        .logo {
+            background-color: #6aac6c;
+            margin-left: 50px;
+            padding: 5px;
+            border-radius: 50px;
+            box-shadow: 2px 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo img {
+            max-width: 50px;
+        }
+
+
+        .company-name {
+            font-size: 1.5rem;
+            /* Adjust font size */
+            font-weight: bold;
+            /* Make it bold */
+            color: #4CAF50;
+            /* Match the button color */
+            margin: 0 20px;
+            /* Space around the company name */
+        }
+
+        .nav-buttons a {
+            text-decoration: none;
+            color: #1c1c1c;
+            font-weight: bold;
+            transition: color 0.3s, background-color 0.3s;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        .nav-buttons a:hover {
+            color: white;
+            background-color: #4CAF50;
+            opacity: 0.8;
+        }
+
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-buttons a:last-child {
+            margin-right: 0;
+        }
+
+        .translate-button {
+            margin-left: 20px;
+        }
+
+
+        .translate-button {
+            margin-left: 20px;
+        }
+
+        .translate-button select {
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-size: 1rem;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #1c1c1c;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .translate-button select:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        h1 {
+            padding: 5px;
+            font-size: 3rem;
+            text-align: center;
+            color: #4CAF50;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .close-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            background-color: #388e3c;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1250px;
+            margin: 5%;
+            padding: 20px;
+        }
+
+        .content {
+            padding: 0 5%;
+        }
+
+        .weather {
+            width: 30%;
+            height: 33%;
+            background: linear-gradient(135deg, #00feba, #5b548a);
+            border-radius: 20px;
+            text-align: center;
+            padding: 45px;
+            margin-right: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .weather h1 {
+            font-size: 80px;
+            font-weight: 500;
+        }
+
+        .weather h2 {
+            font-size: 45px;
+            font-weight: 400;
+            margin-top: -10px;
+        }
+
+        .temprature {
+            color: whitesmoke;
+        }
+
+        .temprature h1 {
+            color: #ddd;
+        }
+
+        h3,
+        h4 {
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+
+        ol,
+        ul {
+            font-size: 1.5rem;
+            color: #555;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        p {
+            text-align: justify;
+            line-height: 1.6;
+            font-size: 1.5rem;
+            color: #555;
+            margin-bottom: 20px;
+            text-indent: 20px;
+        }
+
+        .list {
+            display: flex;
+            justify-content: center;
+            margin: 15px;
+        }
+
+        .list div {
+            background-color: #e8e6e6;
+            padding: 0 8%;
+            margin: 2%;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            box-shadow: 7px 7px 7px 7px grey;
+        }
+
+        .info {
+            padding: 0 25% 0 25%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 50%;
+        }
+
+        .calendar {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            padding: 20px;
+            background-color: #e7f4e4;
+            box-shadow: 7px 7px 7px grey;
+        }
+
+        .image-container {
+            text-align: center;
+            margin-top: 20px;
+            margin-left: 35%;
+            width: 30%;
+            align-content: center;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            box-shadow: 7px 7px 7px 7px grey;
+        }
+
+        .calendar h3 {
+            padding: 15px;
+            margin: 0;
+            color: #388e3c;
+        }
+
+        .calendar table {
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+
+        .calendar th,
+        .calendar td {
+            border: 1px solid #010101;
+            padding: 8px;
+            text-align: center;
+            color: #080707;
+        }
+
+        .calendar th {
+            background-color: #388e3c;
+            color: white;
+        }
+
+        .calendar .highlight {
+            background-color: red;
+            color: #ddd;
+        }
+
+        .alert {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #ffcccb;
+            color: #333;
+            border: 1px solid #c69393;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <h2>Alert from Agrindia!</h2>
+            <p>⚠️ Drought conditions are expected during the month of March, take necessary precautions!</p>
+            <button class="close-btn" onclick="closeModal()">OK</button>
+        </div>
+    </div>
+
+
+    <body>
+        <div class="navbar">
+            <div class="logo">
+                <img src="logo.png" alt="Agrindia Logo">
+            </div>
+            <div class="company-name">Agrindia</div>
+            <div class="nav-buttons">
+                <a href="state.html">Home</a>
+                <a href="karnataka.html">Karnataka</a>
+                <a href="maharashtra.html">Maharashtra</a>
+                <a href="punjab.html">Punjab</a>
+                <a href="himachal_pradesh.html">Himachal Pradesh</a>
+                <div class="translate-button" id="google_translate_element"></div>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <div class="weather">
+                <h2>Live Weather in Maharashrta</h2>
+                <p>Check the latest weather updates:</p>
+                <div class="temprature">
+                    <h1 class="temp">Loading...</h1>
+                    <h2 class="city">Loading...</h2>
+                </div>
+
+            </div>
+
+            <div class="content">
+                <h1>Agriculture in Punjab</h1>
+                <p>
+                    Punjab, often referred to as the "Granary of India," is a key agricultural region known for its
+                    abundant production of wheat, rice, and various fruits and vegetables. However, the state faces
+                    several
+                    agricultural challenges.
+                </p>
+                <h3>Water Scarcity</h3>
+                <p>
+                    Water scarcity is a significant issue in Punjab, primarily due to over-extraction of groundwater and
+                    changing climate patterns. Farmers rely heavily on irrigation, which has led to depletion of water
+                    resources.
+                </p>
+                <h3>Solutions</h3>
+                <p>
+                    To combat this, Punjab is adopting water conservation techniques such as rainwater harvesting, drip
+                    irrigation, and crop rotation to reduce water usage and enhance soil fertility.
+                </p>
+
+            </div>
+
+        </div>
+        <!-- <div class="image-container">
+        <img src="pp.png" alt="Agriculture in Punjab">
+    </div> -->
+
+        <div class="list">
+            <div>
+                <h2>Major Crops</h2>
+                <ul>
+                    <li>Rice</li>
+                    <li>Soybean</li>
+                    <li>Wheat</li>
+                    <li>Cotton</li>
+                    <li>Sugarcane</li>
+                </ul>
+            </div>
+            <div>
+                <h2>Minor Crops</h2>
+                <ul>
+                    <li>Pulses</li>
+                    <li>Millets</li>
+                    <li>Vegetables</li>
+                    <li>Fruits</li>
+                </ul>
+            </div>
+
+
+
+        </div>
+
+
+        <div class="info">
+
+            <div class="calendar">
+                <h3>Major Agricultural Problem Calendar</h3>
+                <table>
+                    <tr>
+                        <th>Sun</th>
+                        <th>Mon</th>
+                        <th>Tue</th>
+                        <th>Wed</th>
+                        <th>Thu</th>
+                        <th>Fri</th>
+                        <th>Sat</th>
+                    </tr>
+                    <tr>
+                        <td> 1</td>
+                        <td> 2</td>
+                        <td> 3</td>
+                        <td> 4</td>
+                        <td> 5</td>
+                        <td> 6</td>
+                        <td> 7</td>
+                    </tr>
+                    <tr>
+                        <td> 8</td>
+                        <td> 9</td>
+                        <td>10</td>
+                        <td>11</td>
+                        <td>12</td>
+                        <td>13</td>
+                        <td>14</td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td class="highlight">16</td>
+                        <td class="highlight">17</td>
+                        <td class="highlight">18</td>
+                        <td class="highlight">19</td>
+                        <td class="highlight">20</td>
+                        <td class="highlight">21</td>
+                    </tr>
+                    <tr>
+                        <td class="highlight">22</td>
+                        <td class="highlight">23</td>
+                        <td class="highlight">24</td>
+                        <td class="highlight">25</td>
+                        <td class="highlight">26</td>
+                        <td class="highlight">27</td>
+                        <td class="highlight">28</td>
+                    </tr>
+                    <tr>
+                        <td class="highlight">29</td>
+                        <td class="highlight">30</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <p class="alert">⚠️ Frost expected in December 2k24! Take precautions to protect your crops.</p>
+            </div>
+
+        </div>
+
+
+        <script type="text/javascript">
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'en',
+                    includedLanguages: 'en,kn,pa,mr,hi', // English, Kannada, Punjabi, Marathi, and Hindi
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                    autoDisplay: false
+                }, 'google_translate_element');
+            }
+        </script>
+        <script type="text/javascript"
+            src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+        <script>
+            const apiKey = "f36121afce9444c5db603b0fee951472";
+            const apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=punjab&units=metric";
+
+            async function checkWeather() {
+                try {
+                    const response = await fetch(apiUrl + `&appid=${apiKey}`);
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    const data = await response.json();
+                    document.querySelector(".city").innerHTML = data.name;
+                    document.querySelector(".temp").innerHTML = `${data.main.temp}°C`;
+                } catch (error) {
+                    console.error('Error fetching the weather data:', error);
+                    document.querySelector(".city").innerHTML = "Error";
+                    document.querySelector(".temp").innerHTML = "N/A";
+                }
+            }
+
+            checkWeather();
+
+
+            // Popup display on page load
+            window.onload = function () {
+                var modal = document.getElementById("myModal");
+                modal.style.display = "block";
+            };
+
+            // Close the popup
+            function closeModal() {
+                var modal = document.getElementById("myModal");
+                modal.style.display = "none";
+            }
+        </script>
+    </body>
+
+</html>
