@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agriculture | Gokak Taluk</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            background-color: #f9f9f9;
+        }
+        
+        .navbar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(196, 211, 199, 0.9);
+            /* Semi-transparent background */
+            padding: 10px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+
+            border-bottom: 2px solid rgba(196, 211, 199, 0.9);
+            box-shadow: 5px 1px 25px rgb(42, 168, 57);
+            z-index: 1000;
+        }
+
+        .logo {
+            background-color: #6aac6c;
+            margin-left: 50px;
+            padding: 5px;
+            border-radius: 50px;
+            box-shadow: 2px 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo img {
+            max-width: 50px;
+        }
+
+
+        .company-name {
+            font-size: 1.5rem;
+            /* Adjust font size */
+            font-weight: bold;
+            /* Make it bold */
+            color: #4CAF50;
+            /* Match the button color */
+            margin: 0 20px;
+            /* Space around the company name */
+        }
+
+        .nav-buttons a {
+            text-decoration: none;
+            color: #1c1c1c;
+            font-weight: bold;
+            transition: color 0.3s, background-color 0.3s;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        .nav-buttons a:hover {
+            color: white;
+            background-color: #4CAF50;
+            opacity: 0.8;
+        }
+
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-buttons a:last-child {
+            margin-right: 0;
+        }
+
+        .translate-button {
+            margin-left: 20px;
+        }
+
+
+        .translate-button {
+            margin-left: 20px;
+        }
+
+        .translate-button select {
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-size: 1rem;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #1c1c1c;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .translate-button select:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+
+
+        .container {
+            text-align: justify;
+            font-size: 1.5rem;
+            margin: 5%;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+
+        h3 {
+            color: #388e3c;
+        }
+
+        p {
+            text-align: justify;
+            line-height: 1.6;
+            color: #555;
+            text-indent: 20px;
+            font-size: 1.5rem;
+        }
+
+        ol, ul {         
+            font-size: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .close-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            background-color: #388e3c;
+        }
+
+        .image-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        img {
+            max-width: 30%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .calendar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            background-color: #e7f4e4;
+        }
+
+        .calendar h3 {
+            margin: 0;
+            color: #388e3c;
+        }
+
+        .calendar table {
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+
+        .calendar th,
+        .calendar td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+            color: #333;
+        }
+
+        .calendar th {
+            background-color: #388e3c;
+            color: white;
+        }
+
+        .alert {
+            background-color: red;
+            color: #e6ebe5;
+        }
+
+        .alert-message {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #ffeb3b;
+            color: #333;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="logo.png" alt="Agrindia Logo">
+        </div>
+        <div class="company-name">Agrindia</div>
+        <div class="nav-buttons">
+            <a href="state.html">Home</a>
+            <a href="karnataka.html">Karnataka</a>
+            <a href="maharashtra.html">Maharashtra</a>
+            <a href="punjab.html">Punjab</a>
+            <a href="himachal_pradesh.html">Himachal Pradesh</a>
+            <div class="translate-button" id="google_translate_element"></div>
+        </div>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <h2>Alert from Agrindia!</h2>
+            <p>⚠️ Rainfall alert for Gokak! Heavy rains expected this week. Prepare your crops.</p>
+            <button class="close-btn" onclick="closeModal()">OK</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Agriculture in Gokak Taluk</h1>
+        <p>
+            Gokak, situated in Karnataka, is a fertile region known for both major and minor crops. The main crops grown
+            here include sugarcane, maize, and groundnuts, while minor crops like pulses and cotton also contribute to
+            the agricultural economy. Farmers in this area rely heavily on the monsoon rains for irrigation, and the
+            region supports diverse agricultural activities.
+        </p>
+        <h3>Some major crops</h3>
+        <div class="crops">
+            <ol>
+                <li>Sugarcane</li>
+                <li>Pulses</li>
+                <li>Groundnuts</li>
+                <li>Wheat</li>
+                <li>Cotton</li>
+            </ol>
+        </div>
+        </p>
+        <h3>Some minor crops</h3>
+        <div class="crops">
+            <ol>
+                <li>Sunflower</li>
+                <li>Maize</li>
+                <li>Bjra</li>
+                <li>Barley</li>
+            </ol>
+        </div>
+        <h3>Weather Challenges</h3>
+        <p>
+            The Gokak region faces multiple weather challenges, especially during the rainy season. Excessive rainfall
+            can lead to waterlogging in fields, affecting crops like sugarcane and groundnuts. Additionally, strong
+            winds during the monsoon can damage crops, reducing yields and impacting the agricultural cycle.
+        </p>
+
+        <div class="image-container">
+            <img src="crop.webp" alt="Crops in Gokak Taluk">
+        </div>
+
+        <div class="calendar">
+            <h3>Weather Alert Calendar</h3>
+            <table>
+                <tr>
+                    <th>Sun</th>
+                    <th>Mon</th>
+                    <th>Tue</th>
+                    <th>Wed</th>
+                    <th>Thu</th>
+                    <th>Fri</th>
+                    <th>Sat</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td class="alert">7</td>
+                    <td>8</td>
+                    <td>9</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>11</td>
+                    <td>12</td>
+                    <td class="alert">13</td>
+                    <td>14</td>
+                    <td>15</td>
+                    <td>16</td>
+                </tr>
+                <!-- Continue filling the calendar -->
+            </table>
+            <p class="alert-message">⚠️ Rainfall alert on 7th and 13th! Ensure drainage systems are ready.</p>
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,kn,pa,mr,hi', // English, Kannada, Punjabi, Marathi, and Hindi
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript"
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    <script>
+        // Popup display on page load
+        window.onload = function () {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "block";
+        };
+
+        // Close the popup
+        function closeModal() {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "none";
+        }
+    </script>
+
+</body>
+
+</html>
