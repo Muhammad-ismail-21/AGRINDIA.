@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Agrindia</title>
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            margin: 0;
+            position: relative;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Background image with blur effect */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('background.avif'); /* Replace with your image path */
+            background-size: cover;
+            background-position: left;
+            filter: blur(5px);
+            z-index: -1;
+        }
+
+        .logo {
+            z-index: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .logo img {
+            width: 300px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .logo img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(1, 123, 1, 0.8);
+        }
+
+        .cta-text {
+            margin-top: 20px;
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #ffffff;
+            text-align: center;
+            letter-spacing: 3px;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Media query for tablets and smaller devices */
+        @media (max-width: 768px) {
+            .logo img {
+                width: 200px;
+            }
+
+            .cta-text {
+                font-size: 1.5em;
+            }
+        }
+
+        /* Manual welcome alert */
+        .alert-box {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #28a745;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            font-size: 1.4em;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .alert-box .close-btn {
+            margin-left: 20px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #FFD700;
+        }
+
+        @media (max-width: 768px) {
+            .alert-box {
+                font-size: 1.2em;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+    <script>
+        function showAlert() {
+            const alertBox = document.createElement('div');
+            alertBox.className = 'alert-box';
+            alertBox.innerHTML = `
+                Welcome to Agrindia! <br> 
+                We are excited to help you explore the world of agriculture.
+                <span class="close-btn" onclick="closeAlert(this)">✖</span>
+            `;
+            document.body.appendChild(alertBox);
+            setTimeout(() => {
+                alertBox.remove();
+            }, 5000);
+        }
+
+        function closeAlert(element) {
+            element.parentElement.remove();
+        }
+
+        window.onload = showAlert;
+    </script>
+</head>
+<body>
+    <div class="logo">
+        <a href="home.html">
+            <img src="logo.png" alt="Logo" id="logo">
+        </a>
+        <div class="cta-text">Click to discover the Future of agriculture</div>
+    </div>
+</body>
+</html>
