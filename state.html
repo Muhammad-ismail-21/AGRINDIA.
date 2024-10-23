@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select a State</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            background-image: url('sstateback.jpg');
+            /* Set your background image here */
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Blurred background effect */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(8px);
+            /* Blur the background */
+            z-index: -1;
+            /* Keep the background behind the content */
+        }
+
+        .navbar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(196, 211, 199, 0.9);
+            /* Semi-transparent background */
+            padding: 10px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+
+            border-bottom: 2px solid rgba(196, 211, 199, 0.9);
+            box-shadow: 5px 1px 25px rgb(42, 168, 57);
+            z-index: 1000;
+        }
+
+        .logo {
+            background-color: #6aac6c;
+            margin-left: 50px;
+            padding: 5px;
+            border-radius: 50px;
+            box-shadow: 2px 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo img {
+            max-width: 50px;
+        }
+
+
+        .company-name {
+            font-size: 1.5rem;
+            /* Adjust font size */
+            font-weight: bold;
+            /* Make it bold */
+            color: #4CAF50;
+            /* Match the button color */
+            margin: 0 20px;
+            /* Space around the company name */
+        }
+
+        .nav-buttons a {
+            text-decoration: none;
+            color: #1c1c1c;
+            font-weight: bold;
+            transition: color 0.3s, background-color 0.3s;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        .nav-buttons a:hover {
+            color: white;
+            background-color: #4CAF50;
+            opacity: 0.8;
+        }
+
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-buttons a:last-child {
+            margin-right: 0;
+        }
+
+        .translate-button {
+            margin-left: 20px;
+        }
+
+
+        .translate-button {
+            margin-left: 20px;
+        }
+
+        .translate-button select {
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-size: 1rem;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #1c1c1c;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .translate-button select:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+
+        .container {
+            margin-top: 15%;
+            width: 80vw;
+            max-width: 800px;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .state-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .state-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 0;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .state-button:hover {
+            background-color: #000000;
+            transform: translateY(-2px);
+        }
+
+        .state-button::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: all 0.5s ease;
+            border-radius: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        .state-button:hover::after {
+            top: 50%;
+            left: 50%;
+        }
+
+        .development-message {
+            margin-top: 40px;
+            font-size: 1rem;
+            color: #e74c3c;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 90vw;
+                padding: 30px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .state-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .state-button {
+                padding: 15px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: 95vw;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            p {
+                font-size: 0.9rem;
+            }
+
+            .state-button {
+                padding: 12px;
+                font-size: 0.9rem;
+            }
+
+            .development-message {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="logo.png" alt="Agrindia Logo">
+        </div>
+        <div class="company-name">Agrindia</div>
+        <div class="nav-buttons">
+            <a href="state.html">Home</a>
+            <a href="karnataka.html">Karnataka</a>
+            <a href="maharashtra.html">Maharashtra</a>
+            <a href="punjab.html">Punjab</a>
+            <a href="himachal_pradesh.html">Himachal Pradesh</a>
+            <div class="translate-button" id="google_translate_element"></div>
+        </div>
+    </div>
+
+
+
+    <div class="container">
+        <h1>Select the state to view details</h1>
+        <p>Choose the state you are interested in to learn more about its agriculture-related information.</p>
+
+        <div class="state-buttons">
+            <button class="state-button" onclick="redirectToPage('karnataka')">Karnataka</button>
+            <button class="state-button" onclick="redirectToPage('maharashtra')">Maharashtra</button>
+            <button class="state-button" onclick="redirectToPage('punjab')">Punjab</button>
+            <button class="state-button" onclick="redirectToPage('madhya-pradesh')">Himachal Pradesh</button>
+        </div>
+
+        <div class="development-message">
+            *This website is currently under development. We will soon provide details for all states in an easy and
+            understandable language with an aesthetic look!*
+        </div>
+    </div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,kn,pa,mr,hi', // English, Kannada, Punjabi, Marathi, and Hindi
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript"
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script>
+        function redirectToPage(state) {
+            // Redirect to the state-specific page
+            if (state === "karnataka") {
+                window.location.href = "karnataka.html";
+            } else if (state === "maharashtra") {
+                window.location.href = "maharashtra.html";
+            } else if (state === "punjab") {
+                window.location.href = "punjab.html";
+            } else if (state === "madhya-pradesh") {
+                window.location.href = "himachal_pradesh.html";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
